@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pag PI2</title>
+    <style>
+        .nome{
+            color = blue;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="nome">TESTE</h1>
+    <button class = "red" onclick="changeColor('red')"">Vermelho</button>
+    <button class = "yellow" onclick="changeColor('yellow')">Amarelo</button>
+    <button class = "green" onclick="changeColor('green')">Verde</button>
+
+    <script>
+        function changeColor(cor){
+            let nome = document.getElementById("nome");
+            nome.style.color = cor;
+        }
+    </script>
+</body>
+</html>
