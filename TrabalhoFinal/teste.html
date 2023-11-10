@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Consumption - JavaScript</title>
+</head>
+<body>
+
+<div id="apiData"></div>
+
+<script>
+  const apiUrl = 'https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking/?decada=1950';
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Exibe os dados no console (pode ser ajustado conforme necessário)
+      console.log(data);
+
+      // Aqui você pode manipular os dados conforme necessário
+      // Por exemplo, exibir na página HTML
+      const apiDataDiv = document.getElementById('apiData');
+      apiDataDiv.innerHTML = `<h2>Dados da API - Localidade: ${data[0].localidade}, Sexo: ${data[0].sexo || 'N/A'}</h2>`;
+
+      // Exemplo de exibição de dados em uma tabela
+      const table = document.createElement('table');
+      const headerRow = table.insertRow(0);
+
+      const headers = ['Nome', 'Frequência', 'Ranking'];
+      headers.forEach(headerText => {
+        const th = document.createElement('th');
+        const text = document.createTextNode(headerText);
+        th.appendChild(text);
+        headerRow.appendChild(th);
+      });
+
+      data[0].res.forEach(registro => {
+        const row = table.insertRow();
+        const values = [registro.nome, registro.frequencia, registro.ranking];
+
+        values.forEach(value => {
+          const cell = row.insertCell();
+          const text = document.createTextNode(value);
+          cell.appendChild(text);
+        });
+      });
+
+      apiDataDiv.appendChild(table);
+    })
+    .catch(error => {
+      console.error('Erro na requisição:', error);
+      const apiDataDiv = document.getElementById('apiData');
+      apiDataDiv.innerHTML = 'Erro ao obter dados da API';
+    });
+</script>
+
+</body>
+</html>

@@ -97,9 +97,9 @@
             ];
             try{
                 //Para Postgree (meu PC)
-                // $pdo = new PDO("pgsql:host=$host;port=5432; dbname=$database;", $user, $password, $options);
-                //Para Mysql
-                $pdo = new PDO("mysql:host=$host; dbname=$database; charset=utf8mb4", $user, $password, $options);
+                $pdo = new PDO("pgsql:host=$host;port=5432; dbname=$database;", $user, $password, $options);
+                // //Para Mysql
+                // $pdo = new PDO("mysql:host=$host; dbname=$database; charset=utf8mb4", $user, $password, $options);
                 return $pdo;
             }catch (Exception $e) {
                 die("Erro na conexão: " . $e->getMessage());
@@ -110,9 +110,9 @@
 
     // Teste
     $host = "localhost";
-    $database = "acerNitro";
-    $user = "root";
-    $password = "1234";
+    $database = "acerlindb";
+    $user = "rfcf10";
+    $password = "r3h8u4a2n5";
 
     $conexao = ConnectionFactory::getConnection($host, $database, $user, $password);
     $pessoaDAO = new PessoaDAOImpl($conexao);
